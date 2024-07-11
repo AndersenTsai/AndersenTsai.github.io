@@ -1,8 +1,41 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+    <title>[UVS-202406195007]BL3410,firmware request,CGI integration</title>
+    <style>
+        video {
+            width: 640px;
+            height: 480px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
 <body>
-<h1>[UVS-202406195007]BL3410,firmware request,CGI integration</h1>
-<p>MJPEG Stream</p>
-<img src="http://10discovery.gvdip.com:82/MjpegStream.cgi?username=admin&password=134321AAzz&channel=1" alt="MJPEG Stream">
+<h1>MJPEG Stream</h1>
+
+<video id="mjpeg-stream" autoplay></video>
+
+    <script>
+        const videoElement = document.getElementById('mjpeg-stream');
+        const mjpegUrl = 'http://10discovery.gvdip.com:82/MjpegStream.cgi?username=admin&password=134321AAzz&channel=1';
+
+        function loadMjpegStream() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', mjpegUrl, true);
+            xhr.responseType = 'arraybuffer';
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const blob = new Blob([xhr.response], { type: 'image/jpeg' });
+                    const url = URL.createObjectURL(blob);
+                    videoElement.src = url;
+                }
+            };
+            xhr.send();
+        }
+
+        loadMjpegStream();
+    </script>
 </body>
 </html>

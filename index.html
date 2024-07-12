@@ -14,12 +14,13 @@
 
 <body>
     <h1>BL3410, firmware request, CGI integration</h1>
+	
     <img id="mjpeg-stream" src="https://10discovery.gvdip.com/MjpegStream.cgi?username=admin&password=134321AAzz&channel=1" alt="MJPEG Stream">
 
 
     <script>
         const imgElement = document.getElementById('mjpeg-stream');
-        const mjpegUrl = 'http://10discovery.gvdip.com:82/MjpegStream.cgi?username=admin&password=134321AAzz&channel=1';
+        const mjpegUrl = 'https://10discovery.gvdip.com/MjpegStream.cgi?username=admin&password=134321AAzz&channel=1';
 
         imgElement.src = mjpegUrl;
     </script>
